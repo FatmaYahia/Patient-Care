@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="AppModel\ve-B503.tmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PatientCare.Common\PatientCare.Common.csproj" />
+  </ItemGroup>
+
+</Project>

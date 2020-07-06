@@ -1,0 +1,100 @@
+﻿@model Doctor
+@{
+    ViewData["Title"] = "Profile";
+    var Id = HttpContextAccessor.HttpContext.Session.GetString("Id");
+    var IsDoctor = HttpContextAccessor.HttpContext.Session.GetString("IsDoctor");
+}
+@{
+    var age = "";
+    if (Model.DateOfBirth == null)
+    {
+        age = "--";
+    }
+    else
+    {
+        age = (DateTime.Now.Year - Model.DateOfBirth.Value.Year).ToString();
+    }
+}
+@section Styles {
+    <link href="~/css/patient.css" rel="stylesheet" />
+    <link href="~/css/Corona.css" rel="stylesheet" />
+
+}
+
+<section id="content" class="ls section_padding_top_100 section_padding_bottom_75">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="side-item text-center text-md-left">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div>
+                                <img src="~/@Model.ImgUrl" alt="" style="max-width:100%">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="item-content right">
+                                <h2 class="entry-title">@Model.FullName</h2>
+
+                                <div class="border-paragraphs" >
+                                    <p>
+                                        <i class="highlight rt-icon2-medal"></i>
+                                        <strong class="grey">Specialization:</strong> @Model.Specialization.Name
+                                    </p>
+
+                                    <p>
+                                        <i class="highlight rt-icon2-birthday-cake"></i>
+                                        <strong class="grey">Age:</strong> @age
+                                    </p>
+
+                                    <p>
+                                        <i class="highlight rt-icon2-user"></i>
+                                        <strong class="grey">Gender:</strong> @Model.Gender.Name
+                                    </p>
+
+                                    <p>
+                                        <i class="highlight rt-icon2-mail"></i>
+                                        <strong class="grey">Email: </strong>
+                                        <a href="mailto:@Model.Email" target="_blank" style="font-size:16px">
+                                            @Model.Email
+                                        </a>
+                                    </p>
+                                    <p>
+                                        <i class="highlight rt-icon2-whatsapp"></i>
+                                        <strong class="grey">Phone: </strong>
+                                        <a href="@("https://wa.me/" + Model.Phone)" target="_blank" style="font-size:16px">
+                                            @Model.Phone
+                                        </a>
+                                    </p>
+                                </div>
+                                @if (IsDoctor != null && Id != null && Model.Id.ToString() == Id)
+                                {
+                                    <div class="mt-5">
+                                        <a class="showDoc btnDoc rounded-right  py-2 " data-ajax="true" data-ajax-update="#data" data-ajax-mode="replace-with" asp-action="DoctorDocuments" asp-route-id="@Model.Id">
+                                            <i class="fas fa-file-medical"></i> <span>&nbsp;Documents</span>
+                                        </a>
+                                        <div class="mt-5"></div>
+                                        <a class="btnEdit rounded-right py-2 " data-ajax="true" data-ajax-update="#data" data-ajax-mode="replace-with" asp-action="edit" asp-route-id="@Model.Id ">
+                                            <i class="fas fa-edit"></i>
+                                            <span>&nbsp;Edit Profile</span>
+                                        </a>
+                                        <div class="mt-5"></div>
+                                        <a class="btnPass rounded-right py-2 " asp-action="checkPassword" asp-route-id="@Model.Id">
+                                            <i class="fas fa-key"></i>
+                                            <span>&nbsp;Change Password</span>
+                                        </a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div id="data"  class="col-sm-12">
+
+            </div>
+        </div>
+    </div>
+</section>

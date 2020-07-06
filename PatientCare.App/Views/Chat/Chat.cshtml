@@ -1,0 +1,42 @@
+﻿@model Chat
+
+@{
+    ViewData["Title"] = "Chat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="chat-body" id="chat_body">
+    @foreach (var message in Model.Messages)
+    {
+    <div class="message">
+        @if(message.IsDoctor==true){
+            <header>@message.Chat.Doctor.FullName</header>
+        }
+        else
+        {
+            <header>@message.Chat.Patient.FullName</header>
+        }
+
+        <p>@message.MessageContent</p>
+        <footer>@message.CreatedAt</footer>
+    </div>
+    }
+<div>
+    <form class="chat-input" id="formsend" onsubmit="sendMessage(event)" asp-controller="Chat" asp-action="CreateMessage">
+        <input type="hidden" name="chatId" id="chatid" value="@Model.Id" />
+        <input type="text" name="message" id="message-input" />
+        <button type="submit" id="sendButton">Send</button>
+    </form>
+
+    @section Scripts{
+
+        <script src="~/js/signalr/dist/browser/signalr.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="~/js/chat.js"></script>
+
+        <script src="signalr/hubs"></script>
+    }
+</div>
+
+</div>
+

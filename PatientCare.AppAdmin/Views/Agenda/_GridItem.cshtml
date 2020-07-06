@@ -1,0 +1,18 @@
+﻿@model Agenda
+
+<td>
+    @Html.DisplayFor(modelItem => Model.Id)
+</td>
+
+<td>
+    @Html.DisplayFor(modelItem => Model.Doctor.FullName)
+</td>
+<td>
+    @String.Format("{0:dd-MM-yyyy }",Model.Date)
+</td>
+<td>
+    @String.Format("{0:00}:{1:00}",Model.TimeFrom.Hours,Model.TimeFrom.Minutes)
+</td>
+<td>
+    @String.Format("{0:00}:{1:00}", Model.TimeTo.Hours, Model.TimeTo.Minutes)
+</td>

@@ -1,0 +1,13 @@
+﻿@model Specialization
+
+<td>
+    @Html.DisplayFor(modelItem => Model.Id)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => Model.Name)
+</td>
+<td>
+    <a class="image-popup-no-margins" href="@Model.ImgUrl">
+        <img class="img-thumbnail img-fluid" src="@Model.ImgUrl" width="75">
+    </a>
+</td>

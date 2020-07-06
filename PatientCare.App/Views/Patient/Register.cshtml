@@ -1,0 +1,188 @@
+﻿@model Patient
+@{
+    ViewData["Title"] = "Register";
+}
+@section Styles {
+    <link href="~/css/patient.css" rel="stylesheet" />
+    <link href="~/css/Corona.css" rel="stylesheet" />
+    <style>
+        .upload2 {
+            height: 243px;
+            margin-top: -267px;
+            border: 3px dashed #777;
+            width: 98%;
+            position: relative;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .overlay-layer {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            opacity: 0.5;
+            background-color: #fff;
+            z-index: 0;
+            color: #222;
+            text-align: center;
+            display: flex;
+        }
+
+        .upload_btn:hover {
+            cursor: pointer;
+        }
+
+        .upload_btn {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            z-index: 10;
+            opacity: 0;
+        }
+
+        .delDoc:hover {
+            color: darkred !important;
+        }
+    </style>
+
+}
+
+
+<div class="container-fluid mt-5 mb-5" style="margin-left:450px">
+
+    <div class="col-sm-12 col-md-8 pt-5 mt-5" id="=data">
+        <form asp-action="Register" class="form-horizontal ord" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="mt-5 mb-5 mx-auto" style="width:100px">
+
+                <i class="fas fa-user-plus fa-10x" style="color:#4d97c9"></i>
+            </div>
+            <br />
+            <div class="form-group row">
+                <div class="col col-sm-12 col-md-6 mt-3">
+                    <label asp-for="FullName" class="pt-2"></label>
+                    <br />
+                    <input asp-for="FullName" class="form-control rounded">
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+                <div class="col col-sm-12 col-md-6 mt-3">
+
+                    <label asp-for="Email" class=" pt-2"></label>
+                    <br />
+                    <input asp-for="Email" class="form-control rounded">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="col col-sm-12 col-md-6 mt-3">
+
+                    <label asp-for="DateOfBirth" class="  pt-2"></label>
+                    <br />
+                    <input asp-for="DateOfBirth" class="form-control rounded">
+                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                </div>
+                <div class="col col-sm-12 col-md-6 mt-3">
+                    <label asp-for="Gender" class="  pt-2"></label>
+                    <br />
+                    <select asp-for="Fk_Gender" class="form-control " asp-items="ViewBag.gender">
+                        <option selected disabled>Select Gender</option>
+                    </select>
+                </div>
+                <div class="col col-sm-12 col-md-6 mt-3">
+
+                    <label asp-for="Address" class=" pt-2"></label>
+                    <br />
+                    <input asp-for="Address" class="form-control rounded">
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="col col-sm-12 col-md-6 mt-3">
+
+                    <label asp-for="Phone" class=" pt-2"></label>
+                    <br />
+                    <input asp-for="Phone" class="form-control rounded">
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+                <div class="col col-sm-12 col-md-6 mt-3">
+
+                    <label asp-for="Password" class=" pt-2"></label>
+                    <br />
+                    <input asp-for="Password" class="form-control rounded">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="col col-sm-12 col-md-6 mt-3">
+
+                    <label asp-for="ConfirmPassword" class=" pt-2"></label>
+                    <br />
+                    <input asp-for="ConfirmPassword" class="form-control rounded">
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+                <hr />
+                <div class="col col-sm-12 col-md-6 mt-3">
+
+                    <label asp-for="Height" class="  pt-2"></label>
+                    <br />
+                    <input asp-for="Height" class="form-control rounded">
+                    <span asp-validation-for="Height" class="text-danger"></span>
+                </div>
+                <div class="col col-sm-12 col-md-6 mt-3">
+
+                    <label asp-for="Weight" class=" pt-2"></label>
+                    <br />
+                    <input asp-for="Weight" class="form-control rounded">
+                    <span asp-validation-for="Weight" class="text-danger"></span>
+                </div>
+                <div class="col col-sm-12 col-md-12 mt-3">
+                    <label class=" pt-2">Blood Type</label>
+                    <br />
+                    <select asp-for="Fk_BloodType" class="form-control " asp-items="ViewBag.BT">
+                        <option selected disabled value="null">Select Blood Type</option>
+                    </select>
+                </div>
+                <div class="col col-sm-12 col-md-12 mt-3">
+
+                    <label asp-for="CronicDiseases" class="  pt-2"></label>
+                    <br />
+                    <textarea asp-for="CronicDiseases" class="form-control rounded"></textarea>
+                </div>
+                <div class="col col-sm-12 col-md-12 mt-5">
+                    <input class="form-check-input" type="checkbox" asp-for="IsPregnant">
+                    <label asp-for="IsPregnant" class="ml-2"></label>
+                </div>
+                <div class="col col-sm-12 col-md-12 mt-5" style="height: 250px">
+
+                </div>
+            </div>
+            <div class="col col-sm-12 col-md-4 mt-5">
+
+                <button type="submit" class="btn btn-primary">Submit </button>
+            </div>
+            <div class="col col-sm-12 col-md-4 mt-5">
+                <a asp-action="Index" asp-controller="Home" class="btn btn-danger">Cancel</a>
+            </div>
+        </form>
+        <div class="upload2 mt-n5">
+            <form id="uploadForm" data-ajax="true" data-ajax-update="#files" data-ajax-mode="replace-with" asp-action="AddDocuments" enctype="multipart/form-data">
+                <input name="document" type="file" class="upload_btn" id="inputGroupFile04">
+                <div id="files">
+                    <div class="overlay-layer">
+                        <div style="margin:auto;">
+                            <i class="fas fa-cloud-upload-alt fa-5x" style="color:#568BCB;"></i>
+                            <br />
+                            <span>Click to Upload Documents</span>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+@section Scripts {
+
+    <script>
+        $("#inputGroupFile04").on("change", function () {
+            $("#uploadForm").submit();
+        })
+    </script>
+
+}

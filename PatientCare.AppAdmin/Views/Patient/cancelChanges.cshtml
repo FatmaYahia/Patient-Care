@@ -1,0 +1,25 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+    <div id="files" class="alert-secondary mt-3" style="height:200px">
+        @if (ViewBag.documents.Count == 0)
+        {
+            <div class="d-inline-block ml-4 mt-3">
+                <span>Files Will be Uploaded Here...</span>
+            </div>
+        }
+        else
+        {
+            @foreach (var item in ViewBag.documents)
+            {
+                <div class="d-inline-block ml-4 mt-3">
+
+                    <div>
+                        <i class="fas fa-file fa-5x"></i>
+                    </div>
+                    <div><span class="mt-2">@item</span></div>
+                </div>
+
+            }}
+
+    </div>

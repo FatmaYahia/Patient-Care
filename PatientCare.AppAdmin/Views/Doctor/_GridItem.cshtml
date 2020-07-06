@@ -1,0 +1,44 @@
+﻿@model Doctor
+@{ 
+    var age = "";
+    if (Model.DateOfBirth == null)
+    {
+        age = "---";
+    }
+    else
+    {
+        age = (DateTime.Now.Year - Model.DateOfBirth.Value.Year).ToString();
+    }}
+<td>
+    @Html.DisplayFor(modelItem => Model.Id)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => Model.FullName)
+</td>
+<td>
+    @age
+</td>
+<td>
+    @Html.DisplayFor(modelItem => Model.Phone)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => Model.Email)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => Model.Gender.Name)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => Model.IsOnline)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => Model.IsVerified)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => Model.Specialization.Name)
+</td>
+<td>
+    <a class="image-popup-no-margins" href="@Model.ImgUrl">
+        <img class="img-thumbnail img-fluid" src="@Model.ImgUrl" width="75">
+    </a>
+</td>
+

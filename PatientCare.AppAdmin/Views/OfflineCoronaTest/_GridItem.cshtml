@@ -1,0 +1,22 @@
+﻿@model OfflineCoronaTest
+
+<td>
+    @Html.DisplayFor(modelItem => Model.Id)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => Model.Patient.Id)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => Model.Patient.FullName)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => Model.Patient.Phone)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => Model.CoronaStatus.Name )
+</td>
+@*<td>
+   @String.Format("0:{0:dd-MM-yyyy h:mm tt}",Model.CreatedAt)
+</td>*@
+
+

@@ -1,0 +1,265 @@
+﻿@{
+    //var FullName = HttpContextAccessor.HttpContext.Session.GetString("FullName");
+    var Email = HttpContextAccessor.HttpContext.Session.GetString("Email");
+    var Id = HttpContextAccessor.HttpContext.Session.GetString("Id");
+    var IsDoctor = HttpContextAccessor.HttpContext.Session.GetString("IsDoctor");
+    var IsPatient = HttpContextAccessor.HttpContext.Session.GetString("IsPatient");
+
+
+}
+
+<!DOCTYPE html>
+<html class="no-js">
+
+<head>
+    <title>@ViewData["Title"]|Patient Care</title>
+    <meta charset="utf-8">
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <![endif]-->
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    @RenderSection("Styles", required: false)
+
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/main.css" id="color-switcher-link">
+    <link rel="stylesheet" href="~/css/animations.css">
+    <link rel="stylesheet" href="~/css/fonts.css">
+    <link rel="stylesheet" href="~/layerslider/css/layerslider.css">
+    <script src="~/~/js/vendor/modernizr-2.6.2.min.js"></script>
+    <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" rel="stylesheet" crossorigin="anonymous">
+
+    <!--[if lt IE 9]>
+        <script src="~/~/js/vendor/html5shiv.min.js"></script>
+        <script src="~/~/js/vendor/respond.min.js"></script>
+        <script src="~/~/js/vendor/jquery-1.12.4.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+    <div class="preloader">
+        <div class="preloader_image"></div>
+    </div>
+    <div id="canvas">
+        <div id="box_wrapper">
+
+            <!-- Login  sections -->
+            <section class="page_topline gradient section_padding_0 table_section table_section_md">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 text-center text-md-left">
+                        </div>
+                        <!-- eof .col- -->
+
+
+                        @if (string.IsNullOrEmpty(Email))
+                        {
+                            <div class="col-md-6 text-center text-md-right">
+                                <ul class="inline-dropdown">
+                                    <li class="dropdown login-dropdown">
+                                        <a id="login" asp-action="login" asp-controller="Home" style="padding: 0px;font-size: 14px">Login</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 text-center text-md-right">
+                                <ul class="inline-dropdown">
+                                    <li class="dropdown login-dropdown">
+                                        <a id="login" asp-action="Register" asp-controller="Patient" style="font-size:14px">Register</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        }
+                        else
+                        {
+                           
+                            <div class="col-md-6 text-center text-md-right">
+                                <ul class="inline-dropdown">
+                                    <li class="dropdown login-dropdown">
+                                        @if (IsDoctor != null)
+                                        {
+                                            <a id="login" asp-action="Profile" asp-controller="Doctor" asp-route-Id="@Id" style="font-size:14px">
+                                                My Profile
+                                            </a>
+                                        }
+                                        else if (IsPatient != null)
+                                        {
+                                            <a id="login" asp-action="Profile" asp-controller="Patient" asp-route-Id="@Id" style="font-size:14px">
+                                                My Profile
+                                            </a>
+                                        }
+
+                                    </li>
+                                    <li class="dropdown login-dropdown">
+                                        <a id="login" asp-action="Logout" asp-controller="Home" style="font-size:14px">Logout</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        }
+                        <!-- eof .col- -->
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- template sections -->
+            <section class="page_toplogo ls text-center">
+                <a asp-action="Index" asp-controller="Home" class="logo top_logo">
+                    <img src="~/images/logo.png" alt=""> Patient Care
+                </a>
+                <!-- header toggler -->
+                <span class="toggle_menu">
+                    <span></span>
+                </span>
+            </section>
+
+            <header class="page_header header_gradient bordered_items">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <!-- main nav start -->
+                            <nav class="mainmenu_wrapper">
+                                <ul class="mainmenu nav sf-menu">
+                                    <li class="">
+                                        <a asp-action="Index" asp-controller="Home">Home</a>
+                                    </li>
+                                    <li>
+                                        <a asp-action="Index" asp-controller="Doctor">Our Doctors</a>
+                                    </li>
+                                    <li>
+                                        <a asp-action="Advice" asp-controller="Corona">Corona Advices</a>
+                                    </li>
+                                    <!-- features -->
+                                    @*<li>
+            <a href="#">Features</a>
+        </li>*@
+                                    <!-- eof features -->
+                                    <!-- Corona -->
+                                    <li>
+                                        <a asp-action="CoronaAssessment" asp-controller="Corona">Corona Assessment</a>
+                                    </li>
+                                    <!-- eof Corona -->
+                                    <li>
+                                        <a asp-action="Index" asp-controller="Pharmacy">Pharmacies</a>
+                                    </li>
+                                    <li>
+                                        <a asp-action="Hospitals" asp-controller="Home">Hospitals</a>
+                                    </li>
+                                    <li>
+                                        <a asp-action="Index" asp-controller="Donation">Donation</a>
+                                    </li>
+                                    @if (!string.IsNullOrEmpty(Email))
+                                    {
+                                        <li>
+                                            <!--<a asp-controller="Chat" asp-action="privateRooms" asp-route-email="Session["email"]">Chats</a>-->
+                                            <a asp-controller="Chat" asp-action="privateRooms">Chats</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </nav>
+                            <!-- eof main nav -->
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+
+
+            @RenderBody()
+
+            <footer class="page_contact ls parallax section_padding_top_75 section_padding_bottom_50 negative_margin">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 text-center to_animate" data-animation="expandOpen">
+                            <h2 class="section_header">Contacts</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="teaser text-center">
+                                <div class="teaser_icon highlight size_normal">
+                                    <i class="rt-icon2-phone-outline"></i>
+                                </div>
+                                <p>
+                                    <span class="grey">Phone:</span> +12 345 678 9123
+                                    <br>
+                                    <span class="grey">Fax:</span> +12 345 678 9123
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="teaser text-center">
+                                <div class="teaser_icon highlight size_normal">
+                                    <i class="rt-icon2-location-outline"></i>
+                                </div>
+                                <p>
+                                    PO Box 54378
+                                    <br> 4321 Your Address,
+                                    <br> Your City, Your Country
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="teaser text-center">
+                                <div class="teaser_icon highlight size_normal">
+                                    <i class="rt-icon2-envelope"></i>
+                                </div>
+                                <p>info@company.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row topmargin_40">
+                        <div class="col-sm-6 to_animate">
+                            <div>
+                                <div class="page_social_icons">
+                                    <a class="soc-facebook" href="#" title="Facebook">#</a>
+                                    <a class="soc-twitter" href="#" title="Twitter">#</a>
+                                    <a class="soc-google" href="#" title="Google">#</a>
+                                    <a class="soc-linkedin" href="#" title="LinkedIn">#</a>
+                                    <a class="soc-dribbble" href="#" title="Dribble">#</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 text-center text-md-right">
+                            <span>
+                                <i class="rt-icon2-pin-alt highlight"> 4321 Your Address, Country</i>
+                                <i class="rt-icon2-newspaper-alt highlight"> 8 (800) 695-2684</i>
+                                <i class="rt-icon2-envelope highlight"> support@company.com </i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+            <section class="page_copyright ls section_padding_50">
+                <div class="container">
+                    <div class="row to_animate">
+                        <div class="col-sm-12 text-center">
+                            <a asp-action="Index" asp-controller="Home" class="logo vertical_logo grey">
+                                <img src="~/images/logo.png" alt="">
+                                <br>Patient Care
+                            </a>
+                        </div>
+                        <div class="col-sm-12 text-center">
+                            <p>
+                                Copyright @DateTime.Now.Year. Patient Care by
+                                <a asp-action="Index" asp-controller="Home">Patient Care</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="~/js/vendor/jquery.js"></script>
+    @*<script src="~/lib/jquery/dist/jquery.js"></script>*@
+    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/js/compressed.js"></script>
+    <script src="~/js/main.js"></script>
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

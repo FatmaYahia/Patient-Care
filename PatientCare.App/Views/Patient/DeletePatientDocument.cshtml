@@ -1,0 +1,49 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@section Styles {
+    <link href="~/css/patient.css" rel="stylesheet" />
+}
+
+<table class="table table-hover " id="files">
+    <thead class="text-left">
+        <tr>
+            <th style="width:35%">File Name</th>
+            <th>Uploaded At</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in (List<PatientDocument>)ViewBag.PDs)
+        {
+            <tr>
+                <td style="border-left:none">
+                    <span>
+                        &nbsp;
+                        &nbsp;
+                        <i class="fas fa-file-alt fa-1x"></i>
+                    </span>
+                    @item.ImgUrl.Substring(item.ImgUrl.IndexOf("_"))
+                </td>
+                <td style="border-left:none">
+                    @if (item.CreatedAt == null)
+                    {
+                        @string.Format("{0:dd-MM-yyyy h:mm tt}", DateTime.Now)
+
+                    }
+                    @string.Format("{0:dd-MM-yyyy h:mm tt}", item.CreatedAt)
+                </td>
+                <td class="text-right pr-3" style="border-left:none">
+                    <a href="~/patientDocuments/@item.ImgUrl" target="_blank" class=" px-3">
+                        <i class="fas fa-arrow-circle-down fa-2x text-success"></i>
+                    </a>
+                    <a asp-action="DeletePatientDocument" data-ajax="true" data-ajax-update="#files" data-ajax-mode="replace-with" asp-route-ImgUrl="@item.ImgUrl" asp-route-id="@ViewBag.PID" class=" px-3">
+                        <i class="fas fa-trash-alt fa-2x text-danger"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

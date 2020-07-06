@@ -1,0 +1,123 @@
+﻿@inject UnitOfWork UnitOfWork
+
+@{
+    ViewData["Title"] = "Hospitals";
+}
+<style>
+    #map {
+        height: 100%;
+    }
+
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+</style>
+
+<section id="" class=" section_padding_top_50 section_padding_bottom_75 ">
+
+    <div class="container mx-auto mt-5">
+        <div class="row justify-content-center ">
+            <div class="col-sm-12 text-center" style="margin-bottom:50px">
+                <hr />
+                <h1 class="section_header " style="color:#4187C9;">
+
+                    Available Beds in Hospitals
+                </h1>
+                <hr />
+            </div>
+
+            <br />
+            <div class="col-sm-12 text-center to_animate" style="margin-bottom:80px">
+
+                <img src="~/images/beds.png" style="width:310px;height:310px;border:1px solid transparent;border-radius:50%" />
+            </div>
+            <br />
+            <div class="col col-sm-4">
+                <select name="Fk_City" id="Fk_City" class="form-control" asp-items="@(new SelectList(UnitOfWork.CityRepository.GetAll(),"Id","Name"))">
+                    <option value="0" disabled selected>
+                        Search by City
+                    </option>
+                </select>
+            </div>
+
+            <div class="col col-lg-12 mt-5">
+                <table class="table table-hover" id="hospitals">
+                    <thead>
+                        <tr>
+                            <th>Hospital Name</th>
+                            <th>Hospital Phone</th>
+                            <th>City</th>
+                            <th>Available Beds in Hospital</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in UnitOfWork.HospitalRepository.GetAll().OrderByDescending(n => n.AvailableBeds).ThenByDescending(n => n.LastModifiedAt).ToList())
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.Phone</td>
+                                <td>@item.City.Name</td>
+                                <td>@item.AvailableBeds<span>&nbsp;Beds</span></td>
+                                <td>
+                                    <a href="@("https://wa.me/" + item.Phone)" target="_blank" style="color:green">
+                                        <i class="rt-icon2-whatsapp"></i><span>&nbsp;</span> Whatsapp
+                                    </a>
+                                    <a href="@("https://www.google.com/maps?saddr=My+Location&daddr=" + item.Latitude + "," + item.Longitude)" target="_blank" class=" map @("Area" + item.Id + "-map") map-restranut">
+                                        <i class="fas fa-location-arrow"></i><span>&nbsp;</span> Go Location
+                                    </a>
+                                </td>
+                            </tr>
+
+                        }
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container" style="width:50%;height:300px">
+    <div id="map"></div>
+</div>
+
+<script src="~/lib//jquery/dist/jquery.js"></script>
+<script>
+    $('#Fk_City').on('change', function () {
+
+        $('#hospitals').load("/Home/hospitalsByCity?id=" + $('#Fk_City').val());
+    });
+    //$(".showMap").on('click', function () {
+    //    $("#mapModel").modal({ show: true });
+    //});
+
+    //var map;
+    //function initMap() {
+    //    map = new google.maps.Map(document.getElementById('map'), {
+    //        center: { lat: 30.033333, lng: 31.233334},
+    //        zoom: 6
+    //    });
+    //}
+
+    //function showMap(id) {
+    //    $('#mapModel').modal({ show: true });
+    //    alert(id);
+    //    $.get("/Home/getLocation?id=" + id, function (data, status) {
+
+    //        var marker = new google.maps.Marker({
+    //            position: { lat: 30.473199, lng: 31.167236 },
+    //            map: map
+
+    //        });
+    //    });
+    //};
+
+
+
+</script>
+@*<script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_RWpfdQ_TYDZbQuPBgaXxFo856gVl8rQ&callback=initMap">
+    </script>*@

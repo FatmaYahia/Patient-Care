@@ -1,0 +1,45 @@
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+    <table class="table table-hover " id="files">
+            <thead class="text-left">
+                <tr>
+                    <th style="width:35%">File Name</th>
+                    <th>Uploaded At</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in (List<PatientDocument>)ViewBag.PDs)
+                {
+                    <tr>
+                        <td>
+                            <span>
+                                &nbsp;
+                                &nbsp;
+                                <i class="fas fa-file-alt fa-1x"></i>
+                            </span>
+                            @item.ImgUrl
+                        </td>
+                        <td>
+                            @if (item.CreatedAt == null)
+                            {
+                                @string.Format("{0:dd-MM-yyyy h:mm tt}", DateTime.Now)
+
+                            }
+                            @string.Format("{0:dd-MM-yyyy h:mm tt}", item.CreatedAt)
+                        </td>
+                        <td class="text-right pr-3">
+                            <a href="~/patientDocuments/@item.ImgUrl" target="_blank" class="btn btn-outline-success a-btn-slide-text px-3">
+                                <i class="fas fa-arrow-circle-down"></i>
+                            </a>
+                            <a asp-action="DeletePatientDocument"  data-ajax="true" data-ajax-update="#files" data-ajax-mode="replace-with" asp-route-ImgUrl="@item.ImgUrl" asp-route-id="@ViewBag.PID" class="btn btn-outline-danger a-btn-slide-text Displaybtn px-3">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+ 

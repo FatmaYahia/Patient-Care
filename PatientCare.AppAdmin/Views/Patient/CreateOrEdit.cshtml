@@ -1,0 +1,210 @@
+﻿@model Patient
+
+@{
+    ViewData["Title"] = "Create or Edit Patient";
+    await Html.RenderPartialAsync("PartialView/_FormStylesPartial");
+}
+<style>
+    .upload {
+        height: 243px;
+        margin-top: -307px;
+        border: 3px dashed #777;
+        width: 98%;
+        position: relative;
+        display: flex;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .overlay-layer {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        opacity: 0.5;
+        background-color: #fff;
+        z-index: 0;
+        color: #222;
+        text-align: center;
+        display: flex;
+    }
+
+    .upload_btn:hover {
+        cursor: pointer;
+    }
+
+    .upload_btn {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: 10;
+        opacity: 0;
+    }
+
+    .delDoc:hover {
+        color: darkred !important;
+    }
+</style>
+
+<div class="row">
+    <div class="col-lg-12">
+        <form asp-action="CreateOrEdit" class="form-horizontal ord" enctype="multipart/form-data">
+            <section class="card">
+                <header class="card-header">
+                    <div class="card-actions">
+                        <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                        <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+                    </div>
+                    <h2 class="card-title">@ViewData["Title"]</h2>
+                </header>
+                <div class="card-body">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group row">
+                        <label asp-for="FullName" class="col-sm-2 control-label  pt-2"></label>
+                        <div class="col-sm-10">
+                            <input asp-for="FullName" class="form-control">
+                            <span asp-validation-for="FullName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="DateOfBirth" class="col-sm-2 control-label  pt-2"></label>
+                        <div class="col-sm-4">
+                            <input asp-for="DateOfBirth" class="form-control">
+                            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                        </div>
+                        <label asp-for="Fk_Gender" class="col-sm-2 control-label  pt-2"></label>
+                        <div class="input-group-append col col-sm-4 col-lg-4">
+                            <select asp-for="Fk_Gender" class="custom-select " asp-items="ViewBag.gender" >
+                                <option>Select Gender</option>
+                            </select>
+                            <span asp-validation-for="Fk_Gender" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Address" class="col-sm-2 control-label  pt-2"></label>
+                        <div class="col-sm-10">
+                            <textarea asp-for="Address" class="form-control"></textarea>
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label asp-for="Phone" class="col-sm-2 control-label  pt-2"></label>
+                        <div class="col-sm-10">
+                            <input asp-for="Phone" class="form-control">
+                            <span asp-validation-for="Phone" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Email" class="col-sm-2 control-label  pt-2"></label>
+                        <div class="col-sm-10">
+                            <input asp-for="Email" class="form-control">
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                    @if (Model.Id == 0)
+                    {
+                        <div class="form-group row">
+                            <label asp-for="Password" class="col-sm-2 control-label  pt-2"></label>
+                            <div class="col-sm-4">
+                                <input asp-for="Password" class="form-control">
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <label asp-for="ConfirmPassword" class="col-sm-2 control-label  pt-2"></label>
+                            <div class="col-sm-4">
+                                <input asp-for="ConfirmPassword" class="form-control">
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <input asp-for="Password" type="hidden" />
+                        <input asp-for="ConfirmPassword" type="hidden" />
+                    }
+
+                    <hr />
+
+                    <div class="form-group row">
+                        <label asp-for="Height" class="col-sm-2 control-label  pt-2"></label>
+                        <div class="col-sm-4 ">
+                            <input type="text" asp-for="Height" class="form-control">
+                            <span asp-validation-for="Height" class="text-danger"></span>
+                        </div>
+                        <label asp-for="Weight" class="col-sm-2 control-label  pt-2"></label>
+                        <div class="col-sm-4 ">
+                            <input type="text" asp-for="Weight" class="form-control">
+                            <span asp-validation-for="Weight" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="CronicDiseases" class="col-sm-2 control-label  pt-2"></label>
+                        <div class="col-sm-10 ">
+                            <textarea asp-for="CronicDiseases" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Fk_BloodType" class="col-sm-2 control-label  pt-2"></label>
+                        <div class="input-group-append col col-sm-10 ">
+                            <select asp-for="Fk_BloodType" class="custom-select " asp-items="ViewBag.BT">
+                                <option>Select Blood Type</option>
+                            </select>
+                            <span asp-validation-for="Fk_BloodType" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                    <div class="form-group row ">
+                        <label asp-for="IsPregnant" class="col-sm-2 control-label  pt-2"></label>
+                        <div class="col-sm-8">
+                            <input type="checkbox" asp-for="IsPregnant">
+                        </div>
+                    </div>
+                </div>
+                @if (Model.Id == 0)
+                {
+                    <div style="height: 250px">
+                    </div>
+                }
+
+                <footer class="card-footer text-left ">
+                    <button type="submit" class="btn btn-primary">Submit </button>
+                    <button type="reset" class="btn btn-default">Reset</button>
+                    <a asp-action="Index" class="btn btn-success">Back</a>
+                </footer>
+            </section>
+        </form>
+    </div>
+    <!--Uploading Documents-->
+    @if (Model.Id == 0)
+    {
+        <div class="upload">
+            <form id="uploadForm" asp-action="AddDocuments" data-ajax="true" data-ajax-update="#files" data-ajax-mode="replace-with" data-ajax-method="post" enctype="multipart/form-data">
+
+                <input name="document" type="file" class="upload_btn" id="inputGroupFile04">
+                <div id="files">
+                    <div class="overlay-layer">
+                        <div class="m-auto">
+                            <i class="fas fa-cloud-upload-alt fa-5x" style="color:#568BCB;"></i>
+                            <br />
+                            <span>Click to Upload Documents</span>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    }
+
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("PartialView/_ValidationScriptsPartial");}
+    @{await Html.RenderPartialAsync("PartialView/_FormScriptsPartial");}
+    <script>
+        $("#inputGroupFile04").on("change", function () {
+            $("#uploadForm").submit();
+        })
+    </script>
+
+}

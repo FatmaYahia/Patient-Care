@@ -1,0 +1,195 @@
+﻿
+@{
+    ViewData["Title"] = "Donation";
+
+}
+<section class="ls section_padding_75">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    @*<h5 class="section_header grey" >
+                        Become a Blood Donor
+                    </h5>*@
+                    
+                    <a asp-action="Donate" class="theme_button" style="background-color: #55bce9; border-color: #55bce9" >Donate</a>
+                    
+                    <a asp-action="Donor" class="theme_button"  style="background-color: #55bce9; border-color: #55bce9">Search for donor</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+<!--Get the Facts About Donating Blood -->
+<section id="about" class="ls">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+
+                <h2 class="widget-title text-center" style="font-size: 35px;">
+                    Facts About Blood Donation
+                </h2>
+                <p class="widget-title text-center" style="font-size: 25px;">
+                    Frequently Asked Questions About Blood Donation
+                </p>
+                <div class="panel-group" id="accordion">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"
+                                   class="collapsed">
+                                    Donating Blood During COVID-19?
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        Even if you live in a city that's encouraging you to stay home,
+                                        most blood banks remain open because they provide an essential service.
+                                        Blood banks are taking extra precautions to help keep donors safe from
+                                        coronavirus(COVID-19).
+                                        Call your local blood bank to ask what steps they're taking,and schedule
+                                        an appointment.
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2"
+                                   class="collapsed">
+                                    Who can donate blood?
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse2" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        Some Countries have special rules about donating blood,but this list of requirements
+                                        from the<a href="https://www.who.int/campaigns/world-blood-donor-day/2019/who-can-give-blood" target="_blank">World Health Organization (WHO)</a>
+                                        can help you learn if you can donate blood
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse3"
+                                   class="collapsed">
+                                    What if i can't donate?
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse3" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        Not everyone can give blood, but donating blood isn't the only way to support
+                                        the blood shortage.Spreading awareness is important.Share hte Blood Donations tool
+                                        with your friends and let them know why it's important to you.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse4"
+                                   class="collapsed">
+                                    How to prepare to donate blood?
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse4" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <ul>
+                                            <li>
+                                                <h5>
+                                                    Eat healthy before donating
+                                                </h5>
+                                                <p>
+                                                    Eat a healthy meal,avoiding fatty foods like fries or ice cream.
+                                                    Have an iron-rice food,such as red meat,fish poultry,beans,
+                                                    spinach.
+
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <h5>
+                                                    Stay Hydrated
+                                                </h5>
+                                                <p>
+                                                    Drink an extra 16oz of water (or other nonalcoholic drink)
+                                                    before your appointment.
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <h5>
+                                                    Be well rested
+                                                </h5>
+                                                <p>
+                                                    Make sure you have a good nigth's sleep the nigth before your
+                                                    donation.
+                                                </p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse5"
+                                   class="collapsed">
+                                    How blood donations help patients?
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse5" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <ul>
+                                            <li>
+                                                Every two seconds,someone in the world needs blood.Everyday,blood
+                                                donors help patients of all ages ,accident and burn victims,heart surgery
+                                                and organ transplant patient,and those battling cancer.
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+        <!-- eof #box_wrapper -->
+    </div>
+</section>
+<!--eof Get the Facts About Donating Blood -->

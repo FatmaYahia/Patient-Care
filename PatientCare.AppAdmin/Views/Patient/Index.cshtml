@@ -1,0 +1,182 @@
+﻿@model IEnumerable<Patient>
+@inject UnitOfWork _UnitOfWork
+@{
+    ViewData["Title"] = "Patients";
+
+    var Email = HttpContextAccessor.HttpContext.Session.GetString("Email");
+
+    var ControlAccess = _UnitOfWork.SystemUserPermissionRepository.IsControlAccess(this.ViewContext.RouteData.Values["controller"].ToString(), Email);
+    var FullAccess = _UnitOfWork.SystemUserPermissionRepository.IsFullAccess(this.ViewContext.RouteData.Values["controller"].ToString(), Email);
+
+    await Html.RenderPartialAsync("PartialView/_FormStylesPartial");
+    await Html.RenderPartialAsync("PartialView/_TableStylesPartial");
+}
+
+<style>
+    .upload {
+        height: 100px;
+        margin-top: 19px;
+        width: 98%;
+        position: relative;
+        display: flex;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .overlay-layer {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        opacity: 0.5;
+        background-color: #fff;
+        z-index: 0;
+        color: #222;
+        text-align: center;
+        display: flex;
+    }
+
+    .upload_btn:hover {
+        cursor: pointer;
+    }
+
+    .upload_btn {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: 10;
+        opacity: 0;
+    }
+
+    .delDoc:hover {
+        color: darkred !important;
+    }
+</style>
+<div class="row">
+    <div class="col">
+        <section class="card">
+            <header class="card-header">
+                <div class="card-actions">
+                    <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                    <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+                </div>
+
+                <h2 class="card-title">@ViewData["Title"]</h2>
+            </header>
+            <div class="card-body">
+                <table class="table table-bordered table-striped mb-0" id="datatable-tabletools">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Id)</th>
+                            <th>@Html.DisplayNameFor(model => model.FullName)</th>
+                            <th>Age</th>
+                            <th>@Html.DisplayNameFor(model => model.Gender)</th>
+                            <th>@Html.DisplayNameFor(model => model.Phone)</th>
+                            <th>@Html.DisplayNameFor(model => model.Email)</th>
+                            <th>@Html.DisplayNameFor(model => model.Address)</th>
+                            <th>
+                                @if (ControlAccess)
+                                {
+                                    <a asp-action="CreateOrEdit" class="btn btn-outline-primary a-btn-slide-text">
+                                        <i class="fas fa-plus-circle"></i>
+                                        <span><strong>Create New</strong></span>
+                                    </a>
+                                }
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                @{await Html.RenderPartialAsync("_GridItem", item);}
+                                <td>
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-success a-btn-slide-text Displaybtn">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    @if (ControlAccess)
+                                    {
+                                        <a asp-action="CreateOrEdit" asp-route-id="@item.Id" class="btn btn-outline-primary a-btn-slide-text">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    }
+                                    @if (FullAccess)
+                                    {
+                                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger a-btn-slide-text Displaybtn">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    }
+                                    @if (ControlAccess)
+                                    {
+                                        <a data-ajax="true" data-ajax-update="#docModalBody" data-ajax-mode="replace-with" asp-action="PatientDocuments" asp-route-id="@item.Id" class="showDoc btn btn-outline-info a-btn-slide-text">
+                                            <i class="far fa-file"></i><span>&nbsp;Documents</span>
+                                        </a>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="DisplayModal" tabindex="-1" role="dialog" aria-labelledby="DetailsTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">@ViewData["Title"]</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="Display">
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--Documents Modal-->
+<div class="modal" tabindex="-1" role="dialog" id="docModal">
+    <div class="modal-dialog-centered m-auto" style="width:65%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Patient Documents</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="docModalBody">
+            </div>
+            <div class="modal-footer">
+                <a id="close" class="btn btn-danger text-light"  data-dismiss="modal">Close</a>
+                <a asp-action="SaveDocuments" class="btn btn-primary">Save changes</a>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+
+    @{await Html.RenderPartialAsync("PartialView/_ValidationScriptsPartial");}
+    @{await Html.RenderPartialAsync("PartialView/_FormScriptsPartial");}
+    @{await Html.RenderPartialAsync("PartialView/_TableScriptsPartial");}
+
+    <script>
+        $(document).ready(function () {
+            $('#datatable-tabletools').on('click', '.Displaybtn', function () {
+                event.preventDefault();
+                var href = $(this).attr('href');
+                $('#Display').load(href);
+                $("#DisplayModal").modal("show");
+            })
+        });
+
+        $('.showDoc').on('click', function () {
+            $('#docModal').modal({ show: true });
+        });
+        $('.#close').on('click', function () {
+            $('#docModalBody').empty();
+        });
+    </script>
+}

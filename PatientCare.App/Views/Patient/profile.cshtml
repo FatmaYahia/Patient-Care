@@ -1,0 +1,95 @@
+﻿@model Patient
+@{
+    ViewData["Title"] = "Profile";
+
+}
+@{
+    var age = "";
+    if (Model.DateOfBirth == null)
+    {
+        age = "";
+    }
+    else
+    {
+        age = (DateTime.Now.Year - Model.DateOfBirth.Value.Year).ToString();
+    }
+}
+
+@section Styles {
+    <link href="~/css/patient.css" rel="stylesheet" />
+    <link href="~/css/Corona.css" rel="stylesheet" />
+
+}
+
+<div class="container-fluid mt-5 mb-5" style="margin-left:180px">
+    <div class="row mt-5 pt-5 justify-content-between">
+        <div class="col-sm-12 col-md-6 col-lg-3 pt-3">
+            <div class="mb-5">
+                <i class="fas fa-user-circle fa-10x" style="color:#75ace0;"></i>
+            </div>
+            <div class="mt-5"></div>
+            <br />
+            <div class="mt-5">
+                <a class="showDoc btnDoc rounded-right  py-4 " data-ajax="true" data-ajax-update="#data" data-ajax-mode="replace-with" asp-action="PatientDocuments" asp-route-id="@Model.Id">
+                    <i class="fas fa-file-medical"></i> <span>&nbsp;Documents</span>
+                </a>
+                <br />
+                <br />
+                <div class="mt-5"></div>
+                <a class="btnHealthInfo rounded-right px-4 py-4 " data-ajax="true" data-ajax-update="#data" data-ajax-mode="replace-with" asp-action="healthInfo" asp-route-id="@Model.Id ">
+                    <i class="fas fa-heartbeat"></i>
+                    <span>&nbsp;Health Information</span>
+                </a>
+                <br />
+                <br />
+                <div class="mt-5"></div>
+                <a class="btnEdit rounded-right py-4 " data-ajax="true" data-ajax-update="#data" data-ajax-mode="replace-with" asp-action="editProfile" asp-route-id="@Model.Id ">
+                    <i class="fas fa-edit"></i>
+                    <span>&nbsp;Edit Profile</span>
+                </a>
+                <br />
+                <br />
+                <div class="mt-5"></div>
+                <a class="btnPass rounded-right py-4 " asp-action="checkPassword" asp-route-id="@Model.Id">
+                    <i class="fas fa-key"></i>
+                    <span>&nbsp;Change Password</span>
+                </a>
+            </div>
+        </div>
+
+        <div>
+            <div class="col-sm-12 col-md-4 pt-5" id="data" style="margin-top:36px;">
+                <label asp-for="FullName" class=" col-sm-4 "></label>
+                <br />
+                <input class="px-3 form-control rounded" asp-for="FullName" disabled />
+                <div class="mt-4">
+                    <label class="col-sm-4 control-label">Age</label>
+                    <br />
+                    <input class="px-3 form-control rounded" value="@age" disabled />
+                </div>
+                <div class="mt-4">
+                    <label asp-for="Gender" class="col-sm-4 control-label"></label>
+                    <br />
+                    <input class="px-3 form-control rounded" asp-for="Gender.Name" disabled />
+                </div>
+                <div class="mt-4">
+                    <label asp-for="Email" class="col-sm-4 col-form-label"></label>
+                    <br />
+                    <input class="px-3 form-control rounded" asp-for="Email" disabled />
+                </div>
+                <div class="mt-4">
+                    <label asp-for="Phone" class="col-sm-4 control-label"></label>
+                    <br />
+                    <input class="px-3 form-control rounded" asp-for="Phone" disabled />
+                </div>
+                <div class="mt-4">
+                    <label asp-for="Address" class="col-sm-4 control-label"></label>
+                    <br />
+                    <input class="px-3 form-control rounded" asp-for="Address" disabled />
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

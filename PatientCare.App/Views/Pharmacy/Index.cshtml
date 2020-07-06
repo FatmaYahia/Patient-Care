@@ -1,0 +1,82 @@
+﻿
+@model List<Pharmacy>
+@inject UnitOfWork UnitOfWork
+@{
+    ViewData["Title"] = "Pharmacies";
+
+}
+
+<!-- list of Pharmacies -->
+<section id="content" class="ls section_padding_top_100 section_padding_bottom_75">
+    <div class="container">
+        <!-- search -->
+        <div class="row">
+            <div class="col-sm-12 to_animate">
+                <form method="Get" asp-action="Index">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="contact-form-name">
+                                <input type="text" size="30" value="" name="Name" id="Name" class="form-control" placeholder="Pharmacy Name">
+                            </p>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <p class="contact-form-message">
+                                <select name="Fk_city" class="form-control" asp-items="@(new SelectList(UnitOfWork.CityRepository.GetAll(),"Id","Name"))">
+                                    <option value="0">Select City</option>
+                                </select>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p class="contact-form-submit text-center">
+                                <button type="submit" class="theme_button">Search</button>
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--eof search -->
+        <!-- Pharmacies -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="isotope_container" class="isotope row masonry-layout">
+                    @foreach (var pharmacy in Model)
+                    {
+                        <div class="isotope-item col-sm-4">
+                            <div class="thumbnail">
+                                <img src="~/images/pharmacy.jpg" alt="" >
+                                <div class="caption">
+                                    <h3>
+                                        @pharmacy.Name
+                                    </h3>
+                                    <div>
+                                        <i class="fa fa-phone" aria-hidden="true"></i>
+                                        <a href="tel:@pharmacy.Phone">
+                                            <p style="display:inline">@pharmacy.Phone</p>
+                                        </a>
+                                        <div class="mt-5"></div>
+                                        <a style="margin-right:10px" href="@("https://www.google.com/maps?saddr=My+Location&daddr=" + pharmacy.Latitude + "," + pharmacy.Longitude)" target="_blank" class=" map @("Area" + pharmacy.Id + "-map") map-restranut">
+                                            <i class="fas fa-location-arrow"></i><span>&nbsp;</span> Go Location
+                                        </a>
+                                        |
+                                        <a style="margin-left:10px;color:green" href="@("https://wa.me/" + pharmacy.Phone)" target="_blank">
+                                            <i class="rt-icon2-whatsapp"></i><span>&nbsp;</span> Whatsapp
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <!-- eof #isotope_container -->
+
+            </div>
+        </div>
+        <!-- eof pharmacies -->
+
+    </div>
+</section>
+<!-- list of Pharmacies -->

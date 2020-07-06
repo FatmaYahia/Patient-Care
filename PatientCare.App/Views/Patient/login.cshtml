@@ -1,0 +1,37 @@
+﻿@model Patient
+@{
+    ViewData["Title"] = "login";
+}
+<h2>Login</h2>
+    <div class="row">
+        <div class="col-lg-12">
+
+            <form asp-action="login"  >
+
+                <div class="form-group row">
+                    <label asp-for="Email" class="col-sm-2 control-label  pt-2"></label>
+                    <div class="col-sm-10 col-lg-5">
+                        <input asp-for="Email" class="form-control">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <label asp-for="Password" class="col-sm-2 control-label  pt-2"></label>
+                    <div class="col-sm-10 col-lg-5">
+                        <input asp-for="Password" class="form-control">
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+               
+                <div class="form-group row">
+                    <div class="col col-sm-10 col-lg-push-2">
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+    </div>

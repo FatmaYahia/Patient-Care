@@ -1,0 +1,202 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    CoronaTest t = (CoronaTest)ViewBag.Questions;
+}
+
+@section Styles {
+    <link href="~/css/Corona.css" rel="stylesheet" />
+}
+
+
+@if (ViewBag.result != null)
+{
+    @if (ViewBag.result == "Risk")
+    {
+        <div id="test">
+            <div class="container mt-5 mx-auto mb-5 test">
+                <div class="shadow p-3 mb-5 bg-white rounded p-5 mt-3 text-center" id="id">
+                    <div class="row mb-5 text-center">
+                        <div class="col col-sm-12 mt-3">
+                            <h3 style="color:#5EA6DA;">
+                                Your Result
+                            </h3>
+                            <hr />
+                        </div>
+
+                        <div class="col col-sm-12">
+                            <h3 class="text-danger text-center mt-3">
+                                We do not recommend a virtual visit for severe symptoms.
+                            </h3>
+                        </div>
+                        <div class="col col-sm-12 mt-5">
+                            <p>
+                                If you are experiencing a medical emergency call<span class="text-danger">&nbsp;105</span>. Emergency room staff are only testing high-risk patients for COVID-19 at this time to ensure that those most in need of testing receive it. Please notify EMS personnel if you believe that you or your loved one may have COVID-19 so that they can take proper precautions to reduce the spread of the virus.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    }
+    @if (ViewBag.result == "Elevated")
+    {
+        <div id="test">
+            <div class="container mt-5 mx-auto mb-5 test">
+                <div class="shadow p-3 mb-5 bg-white rounded p-5 mt-3 text-left" id="id">
+                    <div class="row mb-5 text-left">
+                        <div class="col col-sm-12 mt-3 text-center">
+                            <h3 style="color:#5EA6DA;">
+                                Your Result
+                            </h3>
+                            <hr />
+                        </div>
+                        <div class="col col-sm-12">
+                            <span class=" text-left">
+                                EXPOSURE RISK
+                            </span>
+                        </div>
+                        <div class="col col-sm-12">
+                            <h3 class="text-danger text-left mt-5">
+                                Elevated
+                            </h3>
+                        </div>
+                        <div class="col col-sm-12 mt-3">
+                            <p>
+                                Based on your responses, there is an Elevated risk you have been exposed to COVID-19 at this time.
+                            </p>
+                        </div>
+                        <div class="col col-sm-12 mt-3">
+                            <span class="text-secondary text-left">RECOMMENDATIONS</span>
+                        </div>
+
+                        <div class="col col-sm-12 text-left">
+
+                            <p class="mt-3">
+                                Please consider a virtual visit with a doctor to discuss your symptoms and individualized treatment recommendations.
+                            </p>
+
+                        </div>
+
+                        <div class="col col-sm-12 mt-3">
+                            <a asp-action="Index" asp-controller="Doctor" asp-route-Fk_Specialization="1008" class="theme_button " style="color:white !important;">Consult a Doctor</a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    }
+    @if (ViewBag.result == "Low")
+    {
+        <div id="test">
+            <div class="container mt-5 mx-auto mb-5 test">
+                <div class="shadow p-3 mb-5 bg-white rounded p-5 mt-3 text-left" id="id">
+                    <div class="row mb-5 text-left">
+                        <div class="col col-sm-12 mt-3 text-center">
+                            <h3 style="color:#5EA6DA;">
+                                Your Result
+                            </h3>
+                            <hr />
+                        </div>
+                        <div class="col col-sm-12">
+                            <span class=" text-left">
+                                EXPOSURE RISK
+                            </span>
+                        </div>
+                        <div class="col col-sm-12">
+                            <h3 class="text-info text-left mt-5">
+                                Low
+                            </h3>
+                        </div>
+                        <div class="col col-sm-12 mt-3">
+                            <p>
+                                Based on your responses, there is a low risk you have been exposed to COVID-19 at this time.
+                            </p>
+                        </div>
+                        <div class="col col-sm-12 mt-3">
+                            <span class="text-secondary text-left">RECOMMENDATIONS</span>
+                        </div>
+
+                        <div class="col col-sm-12 text-left">
+
+                            <p class="mt-3">
+                                A virtual visit is not needed at this time. Please stay home and isolate yourself from others in your house as much as possible. Wash your hands frequently, wipe down surfaces, and cough or sneeze into your elbow. Take care of yourself by resting, drinking plenty of fluids and taking over-the-counter treatments as needed to help with your symptoms.
+                            </p>
+
+                        </div>
+                        <div class="col col-sm-12 ">
+                            <p class="mt-1">
+                                If your symptoms worsen, please consider a virtual visit with a doctor to discuss your symptoms and individualized treatment recommendations.
+                            </p>
+                        </div>
+                        <div class="col col-sm-12 mt-3">
+                            <a asp-action="Index" asp-controller="Doctor" asp-route-Fk_Specialization="1008" class="theme_button " style="color:white !important;">Consult a Doctor</a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    }
+}
+@if (t != null)
+{
+    <div id="test">
+        <form data-ajax-method="post" data-ajax="true" data-ajax-update="#test" data-ajax-mode="replace-with" asp-action="CoronaAssessment">
+            <div class="container mt-5 mx-auto mb-5 test">
+                <h3 class="text-dark text-center mt-5 mb-5">COVID‑19 self-assessment</h3>
+                <div class="row">
+                    @if (ViewBag.Qno > 0)
+                    {
+                        <div class="col">
+                            <button type="submit" name="id" value="-1" class="mt-5 mb-1 ml-1" style=" background-color: white; border: none;">
+                                <i class="fas fa-arrow-left fa-1x">&nbsp;Previous</i>
+                            </button>
+                        </div>
+                    }
+
+                    @*<div class="col col-3">
+                            <span>1/11</span>
+                            <div class="progress mt-5">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 5%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>*@
+                </div>
+                <input type="hidden" name="id" value="@t.id" />
+                <div class="shadow p-3 mb-5 bg-white rounded p-5 mt-3 " id="id">
+                    <div class="row mb-5">
+                        <div class="col col-sm-12 col-md-7">
+                            <p class="px-2" id="" style="color:#4d85b8;font-size:20px;">
+                                @t.Question
+                            </p>
+                            <br />
+                            @foreach (var item in t.notes)
+                            {
+                                <span class="mb-2">@item</span>
+                                <br />
+                                <br />
+                            }
+                        </div>
+                        <div class="col col-sm-12 col-md-3 mx-3">
+                            @foreach (var item in t.Answers)
+                            {
+                                <button name="ans" value="@item.Value" type="submit" class="btn btn-info d-block testBtn">@item.Value</button>
+                            }
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </form>
+    </div>
+}
+
+

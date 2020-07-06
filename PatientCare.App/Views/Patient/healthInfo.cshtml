@@ -1,0 +1,50 @@
+﻿@model Patient
+@section Styles {
+    <link href="~/css/patient.css" rel="stylesheet" />
+    <link href="~/css/Corona.css" rel="stylesheet" />
+
+}
+
+<div class="col-sm-12 col-md-4 pt-5" id="data" style="margin-top:36px;">
+    <label asp-for="Height" class=" col-sm-4 col-form-label"></label>
+    <br />
+    <input class="px-3 form-control rounded" asp-for="Height" disabled />
+
+    <div class="mt-3">
+        <label asp-for="Weight" class="col-sm-4 control-label"></label>
+        <br />
+        <input class="px-3 form-control rounded" asp-for="Weight" disabled />
+    </div>
+    <div class="mt-3">
+        <label class="col-sm-4 col-form-label">Blood Type</label>
+        <br />
+        <input class="px-3 form-control rounded" asp-for="BloodType.Name" disabled />
+    </div>
+    <div class="mt-3">
+        <label asp-for="CronicDiseases" class="col-sm-4 control-label"></label>
+        <br />
+        <input class="px-3 form-control rounded" asp-for="CronicDiseases" disabled />
+    </div>
+    @if (Model.Gender.Name == "Female")
+    {
+        <div class="mt-3">
+            <label asp-for="IsPregnant" class="col-sm-4 control-label"></label>
+            <br />
+            @if (Model.IsPregnant == true)
+            {
+                <input class="px-3 form-control rounded" value="Yes" disabled />
+
+            }
+            else
+            {
+                <input class="px-3 form-control rounded" value="No" disabled />
+            }
+
+
+
+        </div>
+    }
+    <br />
+    <a asp-action="back" asp-route-id="@Model.Id" data-ajax="true" data-ajax-update="#data" data-ajax-mode="replace-with" class="btn btn-primary">Back to profile</a>
+
+</div>

@@ -1,0 +1,11 @@
+﻿@model ImageViewModel
+    <div class="col col-sm-12 col-md-12 mt-3">
+        <label class="control-label" for="@Model.ImageName">@Model.LabelName</label>
+        <div class="fileupload fileupload-new" data-provides="fileupload">
+            <div class="input-append">
+                <span class="btn btn-default btn-file">
+                    <input type="file" id="@Model.ImageName" name="@Model.ImageName" accept="image/*" />
+                </span>
+            </div>
+        </div>
+    </div>

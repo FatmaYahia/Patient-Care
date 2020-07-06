@@ -1,0 +1,42 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model List<Hospital>
+<table class="table table-hover" id="hospitals">
+    <thead>
+        <tr>
+            <th>Hospital Name</th>
+            <th>Hospital Phone</th>
+            <th>City</th>
+            <th>Available Beds in Hospital</th>
+            <th>Last Update</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Phone</td>
+                <td>@item.City.Name</td>
+                <td>@item.AvailableBeds<span>&nbsp;Beds</span></td>
+                <td>@item.LastModifiedAt</td>
+                <td>
+                    <a href="@("https://www.google.com/maps?saddr=My+Location&daddr=" + item.Latitude + "," + item.Longitude)" target="_blank" class=" map @("Area" + item.Id + "-map") map-restranut">
+                        <i class="fas fa-location-arrow"></i><span>&nbsp;</span> Go Location
+                    </a>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+
+</table>
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@

@@ -1,0 +1,36 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@section Styles {
+    <link href="~/css/patient.css" rel="stylesheet" />
+    <link href="~/css/Corona.css" rel="stylesheet" />
+
+}
+
+<div id="files">
+    <div class="mt-4 ml-5" style="position:absolute;z-index:18;">
+        @foreach (var item in ViewBag.documents)
+        {
+            <div class=" mb-3 d-inline-block ml-4 mt-3" style="max-width: 18rem;">
+                <div class="deleteDocument text-left ">
+                    <a class="delDoc text-danger" asp-action="DeleteDocument" asp-route-file="@item" data-ajax="true" data-ajax-update="#files" data-ajax-mode="replace-with">
+                        <i class="fas fa-minus-circle fa-2x"></i>
+                    </a>
+                </div>
+                <div class="text-center">
+                    <i class="far fa-file-alt fa-4x"></i>
+                </div>
+                <div class="text-center">
+                    <span class="mt-2">@item.Substring(item.IndexOf("_"))</span>
+                </div>
+            </div>
+
+
+        }
+
+
+    </div>
+    <div class="overlay-layer"></div>
+</div>
+
+

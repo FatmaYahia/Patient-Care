@@ -1,0 +1,14 @@
+﻿@model OnlineCoronaTest
+
+<td>
+    @Html.DisplayFor(modelItem => Model.Id)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => Model.Fk_Patient)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => Model.Patient.FullName)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => Model.CoronaStatus)
+</td>

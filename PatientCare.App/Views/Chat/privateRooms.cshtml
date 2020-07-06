@@ -1,0 +1,26 @@
+﻿@using System.Security.Claims
+@model IEnumerable<Chat>
+@{ 
+    //var userId= int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+}
+@{
+    ViewData["Title"] = "privateRooms";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="chat-body">
+    @foreach(var chat in Model)
+    {
+        <a class="room-button" asp-controller="Chat" asp-action="Chat" asp-route-id="@chat.Id">
+            @if(ViewBag.isdoct == false)
+            {
+            @chat.Doctor.FullName
+            }
+            else
+            {
+            @chat.Patient.FullName
+            }
+        </a>
+    }
+</div>
+

@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Chat>
+@inject UnitOfWork _UnitOfWork
+@{
+    ViewData["Title"] = "Chat";
+
+    var Email = HttpContextAccessor.HttpContext.Session.GetString("Email");
+
+    var ControlAccess = _UnitOfWork.SystemUserPermissionRepository.IsControlAccess(this.ViewContext.RouteData.Values["controller"].ToString(), Email);
+    var FullAccess = _UnitOfWork.SystemUserPermissionRepository.IsFullAccess(this.ViewContext.RouteData.Values["controller"].ToString(), Email);
+
+    await Html.RenderPartialAsync("PartialView/_FormStylesPartial");
+    await Html.RenderPartialAsync("PartialView/_TableStylesPartial");
+}
+
+<div class="row">
+    <div class="col">
+        <section class="card">
+            <header class="card-header">
+                <div class="card-actions">
+                    <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+                    <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+                </div>
+
+                <h2 class="card-title">@ViewData["Title"]</h2>
+            </header>
+            <div class="card-body">
+                <table class="table table-bordered table-striped mb-0" id="datatable-tabletools">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Id)</th>
+                            <th>@Html.DisplayNameFor(model => model.CreatedAt)</th>
+                            <th>@Html.DisplayNameFor(model => model.LastModifiedAt)</th>
+                            <th>@Html.DisplayNameFor(model => model.Fk_Doctor)</th>
+                            <th>@Html.DisplayNameFor(model => model.Fk_Patient)</th>
+
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                @{await Html.RenderPartialAsync("_GridItem", item);}
+                                
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="DisplayModal" tabindex="-1" role="dialog" aria-labelledby="DetailsTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">@ViewData["Title"]</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="Display">
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    @{await Html.RenderPartialAsync("PartialView/_ValidationScriptsPartial");}
+    @{await Html.RenderPartialAsync("PartialView/_FormScriptsPartial");}
+    @{await Html.RenderPartialAsync("PartialView/_TableScriptsPartial");}
+
+    <script>
+        $(document).ready(function () {
+            $('#datatable-tabletools').on('click', '.Displaybtn',function () {
+                event.preventDefault();
+                var href = $(this).attr('href');
+                $('#Display').load(href);
+                $("#DisplayModal").modal("show");
+            })
+        });
+    </script>
+}

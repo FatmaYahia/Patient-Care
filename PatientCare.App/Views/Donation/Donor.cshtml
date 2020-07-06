@@ -1,0 +1,48 @@
+﻿@model List<Donation>
+@inject UnitOfWork UnitOfWork
+@{
+    ViewData["Title"] = "Donation";
+
+}
+    
+<div class="container">
+    <div class="row text-sm-center" style="margin-top:5%">
+        <h1>Donation List</h1>
+    </div>
+    <div class="row" style="margin-top:5%">
+        <div class="col-sm-12">
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th>FullName</th>
+                        <th>Phone</th>
+                        <th>Blood Type</th>
+                        <th>Donate Type</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                @item.Patient.FullName
+                            </td>
+                            <td>
+                                @item.Patient.Phone
+                            </td>
+                            <td>
+                                @item.Patient.BloodType.Name
+                            </td>
+                            <td>
+                                @item.DonateType.Name
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+                

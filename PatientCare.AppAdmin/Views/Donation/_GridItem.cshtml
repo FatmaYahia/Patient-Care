@@ -1,0 +1,21 @@
+﻿@model Donation
+
+<td>
+    @Html.DisplayFor(modelItem => Model.Id)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => Model.Patient.Id)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => Model.Patient.FullName)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => Model.Patient.Phone)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => Model.Patient.BloodType.Name)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => Model.DonateType.Name)
+</td>
+

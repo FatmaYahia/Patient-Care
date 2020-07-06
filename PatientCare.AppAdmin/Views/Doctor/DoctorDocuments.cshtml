@@ -1,0 +1,66 @@
+﻿
+<div class="modal-body" id="docModalBody">
+    <div style="height:150px">
+        <div class="upload" style="height:100px">
+            <form id="uploadForm" asp-action="AddDoctorDocument" asp-route-id="@ViewBag.DID" data-ajax="true" data-ajax-update="#files" data-ajax-mode="replace-with" data-ajax-method="post" enctype="multipart/form-data">
+                <input name="document" type="file" class="upload_btn" id="inputGroupFile04">                               
+                <div class="overlay-layer">
+                    <div class="m-auto">
+                        <i class="fas fa-cloud-upload-alt fa-5x" style="color:#568BCB;"></i>
+                        <br />
+                        <span>Click to Add New</span>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+    <table class="table table-hover " id="files">
+        <thead class="text-left">
+            <tr>
+                <th style="width:35%">File Name</th>
+                <th>Uploaded At</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in (List<DoctorDocument>)ViewBag.DDs)
+            {
+                <tr>
+                    <td>
+                        <span>
+                            &nbsp;
+                            &nbsp;
+                            <i class="fas fa-file-alt fa-1x"></i>
+                        </span>
+                        @item.ImgUrl
+                    </td>
+                    <td>
+                        @if (item.CreatedAt == null)
+                        {
+                            @string.Format("{0:dd-MM-yyyy h:mm tt}", DateTime.Now)}
+                        @string.Format("{0:dd-MM-yyyy h:mm tt}", item.CreatedAt)
+                    </td>
+                    <td class="text-right pr-3">
+                        <a href="~/DoctorDocuments/@item.ImgUrl" target="_blank" class="btn btn-outline-success a-btn-slide-text px-3">
+                            <i class="fas fa-arrow-circle-down"></i>
+                        </a>
+                        <a asp-action="DeleteDoctorDocument" asp-route-ImgUrl="@item.ImgUrl" asp-route-id="@ViewBag.DID" data-ajax="true" data-ajax-update="#files" data-ajax-mode="replace-with" class="btn btn-outline-danger a-btn-slide-text Displaybtn px-3">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+}
+        </tbody>
+    </table>
+</div>
+<script>
+    $("#inputGroupFile04").on("change", function () {
+        $("#uploadForm").submit();
+    })
+
+</script>
+
+

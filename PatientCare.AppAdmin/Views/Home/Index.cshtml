@@ -1,0 +1,224 @@
+﻿@model HomeViewModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <section class="card card-featured-left card-featured-primary mb-4">
+            <div class="card-body">
+                <div class="widget-summary widget-summary-xlg">
+                    <div class="widget-summary-col widget-summary-col-icon">
+                        <div class="summary-icon bg-primary">
+                            <i class="fas fa-medkit"></i>
+                        </div>
+                    </div>
+                    <div class="widget-summary-col">
+                        <div class="summary">
+                            <h4 class="title">Specializations</h4>
+                            <div class="info">
+                                <strong class="amount">@Model.Specialization</strong>
+                            </div>
+                        </div>
+                        <div class="summary-footer">
+                            <a class="text-muted text-uppercase" asp-action="Index" asp-controller="Specialization">(view all)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="col-md-4">
+        <section class="card card-featured-left card-featured-primary mb-4">
+            <div class="card-body">
+                <div class="widget-summary widget-summary-xlg">
+                    <div class="widget-summary-col widget-summary-col-icon">
+                        <div class="summary-icon bg-primary">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                    </div>
+                    <div class="widget-summary-col">
+                        <div class="summary">
+                            <h4 class="title">Doctor</h4>
+                            <div class="info">
+                                <strong class="amount">@Model.Doctor</strong>
+                            </div>
+                        </div>
+                        <div class="summary-footer">
+                            <a class="text-muted text-uppercase" asp-action="Index" asp-controller="Doctor">(view all)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="col-md-4">
+        <section class="card card-featured-left card-featured-primary mb-4">
+            <div class="card-body">
+                <div class="widget-summary widget-summary-xlg">
+                    <div class="widget-summary-col widget-summary-col-icon">
+                        <div class="summary-icon bg-primary">
+                            <i class="fas fa-comment"></i>
+                        </div>
+                    </div>
+                    <div class="widget-summary-col">
+                        <div class="summary">
+                            <h4 class="title">Chats</h4>
+                            <div class="info">
+                                <strong class="amount">@Model.Chat</strong>
+                            </div>
+                        </div>
+                        <div class="summary-footer">
+                            <a class="text-muted text-uppercase" asp-action="Index" asp-controller="Chat">(view all)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="col-md-4">
+        <section class="card card-featured-left card-featured-primary mb-4">
+            <div class="card-body">
+                <div class="widget-summary widget-summary-xlg">
+                    <div class="widget-summary-col widget-summary-col-icon">
+                        <div class="summary-icon bg-primary">
+                            <i class="fas fa-users"></i>
+                        </div>
+                    </div>
+                    <div class="widget-summary-col">
+                        <div class="summary">
+                            <h4 class="title">Patients</h4>
+                            <div class="info">
+                                <strong class="amount">@Model.Patient</strong>
+                            </div>
+                        </div>
+                        <div class="summary-footer">
+                            <a class="text-muted text-uppercase" asp-action="Index" asp-controller="Patient">(view all)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="col-md-4">
+        <section class="card card-featured-left card-featured-primary mb-4">
+            <div class="card-body">
+                <div class="widget-summary widget-summary-xlg">
+                    <div class="widget-summary-col widget-summary-col-icon">
+                        <div class="summary-icon bg-primary">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                    </div>
+                    <div class="widget-summary-col">
+                        <div class="summary">
+                            <h4 class="title">Donations</h4>
+                            <div class="info">
+                                <strong class="amount">@Model.Donation</strong>
+                            </div>
+                        </div>
+                        <div class="summary-footer">
+                            <a class="text-muted text-uppercase" asp-action="Index" asp-controller="Donation">(view all)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="col-md-4">
+        <section class="card card-featured-left card-featured-primary mb-4">
+            <div class="card-body">
+                <div class="widget-summary widget-summary-xlg">
+                    <div class="widget-summary-col widget-summary-col-icon">
+                        <div class="summary-icon bg-primary">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="widget-summary-col">
+                        <div class="summary">
+                            <h4 class="title">Offline Corona Test</h4>
+                            <div class="info">
+                                <strong class="amount">@Model.OfflineCoronaTest</strong>
+                            </div>
+                        </div>
+                        <div class="summary-footer">
+                            <a class="text-muted text-uppercase" asp-action="Index" asp-controller="OfflineCoronaTest">(view all)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="col-md-4">
+        <section class="card card-featured-left card-featured-primary mb-4">
+            <div class="card-body">
+                <div class="widget-summary widget-summary-xlg">
+                    <div class="widget-summary-col widget-summary-col-icon">
+                        <div class="summary-icon bg-primary">
+                            <i class="fas fa-h-square"></i>
+                        </div>
+                    </div>
+                    <div class="widget-summary-col">
+                        <div class="summary">
+                            <h4 class="title">Hospitals</h4>
+                            <div class="info">
+                                <strong class="amount">@Model.Hospital</strong>
+                            </div>
+                        </div>
+                        <div class="summary-footer">
+                            <a class="text-muted text-uppercase" asp-action="Index" asp-controller="Hospital">(view all)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="col-md-4">
+        <section class="card card-featured-left card-featured-primary mb-4">
+            <div class="card-body">
+                <div class="widget-summary widget-summary-xlg">
+                    <div class="widget-summary-col widget-summary-col-icon">
+                        <div class="summary-icon bg-primary">
+                            <i class="fas fa-medkit"></i>
+                        </div>
+                    </div>
+                    <div class="widget-summary-col">
+                        <div class="summary">
+                            <h4 class="title">Pharmacies</h4>
+                            <div class="info">
+                                <strong class="amount">@Model.Pharmacy</strong>
+                            </div>
+                        </div>
+                        <div class="summary-footer">
+                            <a class="text-muted text-uppercase" asp-action="Index" asp-controller="Pharmacy">(view all)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="col-md-4">
+        <section class="card card-featured-left card-featured-primary mb-4">
+            <div class="card-body">
+                <div class="widget-summary widget-summary-xlg">
+                    <div class="widget-summary-col widget-summary-col-icon">
+                        <div class="summary-icon bg-primary">
+                            <i class="fas fa-lock-open"></i>
+                        </div>
+                    </div>
+                    <div class="widget-summary-col">
+                        <div class="summary">
+                            <h4 class="title">System Users</h4>
+                            <div class="info">
+                                <strong class="amount">@Model.SystemUser</strong>
+                            </div>
+                        </div>
+                        <div class="summary-footer">
+                            <a class="text-muted text-uppercase" asp-action="Index" asp-controller="SystemUser">(view all)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</div>

@@ -1,0 +1,14 @@
+﻿@model Chat
+
+<td>
+    @Html.DisplayFor(modelItem => Model.Id)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => Model.CreatedAt)
+</td><td>
+    @Html.DisplayFor(modelItem => Model.LastModifiedAt)
+</td><td>
+    @Html.DisplayFor(modelItem => Model.Doctor.FullName)
+</td><td>
+    @Html.DisplayFor(modelItem => Model.Patient.FullName)
+</td>

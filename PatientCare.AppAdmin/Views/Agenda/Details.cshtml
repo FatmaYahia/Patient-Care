@@ -1,0 +1,51 @@
+﻿
+@model Agenda
+
+@{ 
+    Layout = null;  
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <form asp-action="" class="form-horizontal">
+            <section class="card">
+                <div class="card-body">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group row">
+                        <label asp-for="Doctor.FullName" class="col-sm-2 control-label  pt-2"></label>
+                        <div class="col-sm-10">
+                            <input asp-for="Doctor.FullName" class="form-control" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Date" class="col-sm-2 control-label  pt-2"></label>
+                        <div class="col-sm-10">
+                            <input value="@string.Format("{0:dd-MM-yyyy }",Model.Date)" class="form-control" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="TimeFrom" class="col-sm-2 control-label  pt-2"></label>
+                        <div class="col-sm-4">
+                            <input value="@String.Format("{0:00}:{1:00}", Model.TimeFrom.Hours, Model.TimeFrom.Minutes)" class="form-control" disabled />
+                        </div>
+                        <label asp-for="TimeTo" class="col-sm-2 control-label  pt-2"></label>
+                        <div class="col-sm-4">
+                            <input value="@String.Format("{0:00}:{1:00}", Model.TimeTo.Hours, Model.TimeTo.Minutes)" class="form-control" disabled />
+                        </div>
+                    </div>
+                   
+                    <div class="form-group row">
+                        <label asp-for="LastModifiedAt" class="col-sm-2 control-label  pt-2"></label>
+                        <div class="col-sm-4">
+                            <input asp-for="LastModifiedAt" asp-format="{0:dd-MM-yyyy h:mm tt}" class="form-control" disabled>
+                        </div>
+                        <label asp-for="CreatedAt" class="col-sm-2 control-label  pt-2"></label>
+                        <div class="col-sm-4">
+                            <input asp-for="CreatedAt" asp-format="{0:dd-MM-yyyy h:mm tt}" class="form-control" disabled>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </form>
+    </div>
+</div>

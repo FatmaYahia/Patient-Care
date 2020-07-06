@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "Corona Assessment";
+}
+
+@section Styles {
+    <link href="~/css/Corona.css" rel="stylesheet" />
+}
+
+
+<div id="test">
+    <form data-ajax-method="post" data-ajax="true" data-ajax-update="#test" data-ajax-mode="replace-with" asp-action="CoronaAssessment">
+        <div class="container mt-5 mx-auto test">
+            <h3 class="text-dark text-center mt-5 mb-5">COVID‑19 Self-Assessment</h3>
+            <div class="shadow p-5 mb-5 bg-white rounded mt-3 ">
+                <p class="px-4">
+                    Based on Centers for Disease Control and Prevention (CDC) guidelines, we’ve prepared a risk assessment to help you determine if you should seek evaluation by a doctor.
+                    <br />
+                    The assessment should take less than two minutes and will provide you with personalized recommendations based on your answers.
+                </p>
+            </div>
+            <button name="ans" type="submit" class="theme_button mb-5">Begin</button>
+
+        </div>
+    </form>
+</div>
+
+
+

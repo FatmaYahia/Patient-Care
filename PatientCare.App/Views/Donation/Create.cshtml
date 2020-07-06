@@ -1,0 +1,119 @@
+﻿
+@model Patient
+@{
+    ViewData["Title"] = "Create";
+
+}
+    <section id="content" class="ls section_padding_100">
+        <div class="container">
+            <div class="row">
+
+                <form class="shop-register" role="form">
+
+                    <div class="col-sm-6">
+                        <div class="form-group validate-required" id="billing_first_name_field">
+                            <label for="billing_first_name" class="control-label">
+                                <strong class="grey">Name </strong>
+                                <span class="required">*</span>
+                            </label>
+
+                            <input type="text" class="form-control " name="billing_first_name" id="billing_first_name" placeholder="" value="">
+                        </div>
+
+                        <div class="form-group" id="billing_company_field">
+                            <label for="billing_company" class="control-label">
+                                <strong class="grey">BitrhOfDate</strong>
+                            </label>
+
+                            <input type="text" class="form-control " name="billing_company" id="billing_company" placeholder="" value="">
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group validate-required" id="billing_last_name_field">
+                            <label for="billing_last_name" class="control-label">
+                                <strong class="grey">Phone </strong>
+                                <span class="required">*</span>
+                            </label>
+
+                            <input type="text" class="form-control " name="billing_last_name" id="billing_last_name" placeholder="" value="">
+
+                        </div>
+
+                        <div class="form-group validate-required validate-email" id="billing_email_field">
+                            <label for="billing_email" class="control-label">
+                                <strong class="grey">Email </strong>
+                                <span class="required">*</span>
+                            </label>
+
+                            <input type="text" class="form-control " name="billing_email" id="billing_email" placeholder="email" value="">
+
+                        </div>
+
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group" id="billing_password_field">
+                            <label for="billing_password" class="control-label">
+                                <strong class="grey">Password</strong>
+                                <span class="required">*</span>
+                            </label>
+
+                            <input type="text" class="form-control " name="billing_password" id="billing_password" placeholder="" value="">
+
+                        </div>
+
+                        <div class="form-group" id="billing_password2_field">
+                            <label for="billing_password2" class="control-label">
+                                <strong class="grey">Confirm Password</strong>
+                                <span class="required">*</span>
+                            </label>
+
+                            <input type="text" class="form-control " name="billing_password2" id="billing_password2" placeholder="" value="">
+
+                        </div>
+                        <div>
+                            <strong class="grey">Gender </strong>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio">Male
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio">Female
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group address-field validate-required" id="billing_address_fields">
+                            <label for="billing_address_1" class="control-label">
+                                <strong class="grey">Address </strong>
+                                <span class="required">*</span>
+                            </label>
+
+                            <input type="text" class="form-control " name="billing_address_1" id="billing_address_1" placeholder="Street address" value="">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <input type="text" class="form-control " name="billing_address_2" id="billing_address_2" placeholder="Apartment, suite, unit etc. (optional)" value="">
+                        </div>
+
+                    </div>
+                    <div class="col-sm-12">
+
+                        <button type="submit" class="theme_button color1">Register</button>
+                        <button type="reset" class="theme_button color2">Clear</button>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </section>

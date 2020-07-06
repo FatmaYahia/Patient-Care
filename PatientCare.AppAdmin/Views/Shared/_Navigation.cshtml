@@ -1,0 +1,290 @@
+﻿@{
+    var Home = HttpContextAccessor.HttpContext.Session.GetString("Home");
+    var SystemView = HttpContextAccessor.HttpContext.Session.GetString("SystemView");
+    var SystemUser = HttpContextAccessor.HttpContext.Session.GetString("SystemUser");
+    var Gender = HttpContextAccessor.HttpContext.Session.GetString("Gender");
+    var Patient = HttpContextAccessor.HttpContext.Session.GetString("Patient");
+    var Donation = HttpContextAccessor.HttpContext.Session.GetString("Donation");
+    var offlineCoronaTest = HttpContextAccessor.HttpContext.Session.GetString("offlineCoronaTest");
+    var Doctor = HttpContextAccessor.HttpContext.Session.GetString("Doctor");
+    var Agenda = HttpContextAccessor.HttpContext.Session.GetString("Agenda");
+    var OnlineCoronaTest = HttpContextAccessor.HttpContext.Session.GetString("OnlineCoronaTest");
+    var OfflineCoronaTest = HttpContextAccessor.HttpContext.Session.GetString("OfflineCoronaTest");
+    var BloodType = HttpContextAccessor.HttpContext.Session.GetString("BloodType");
+    var DonateType = HttpContextAccessor.HttpContext.Session.GetString("DonateType");
+    var Hospital = HttpContextAccessor.HttpContext.Session.GetString("Hospital");
+    var Pharmacy = HttpContextAccessor.HttpContext.Session.GetString("Pharmacy");
+    var Chat = HttpContextAccessor.HttpContext.Session.GetString("Chat");
+    var Message = HttpContextAccessor.HttpContext.Session.GetString("Message");
+    var CoronaStatus = HttpContextAccessor.HttpContext.Session.GetString("CoronaStatus");
+    var Specialization = HttpContextAccessor.HttpContext.Session.GetString("Specialization");
+    var City = HttpContextAccessor.HttpContext.Session.GetString("City");
+}
+
+<!-- start: sidebar -->
+<aside id="sidebar-left" class="sidebar-left">
+
+    <div class="sidebar-header">
+        <div class="sidebar-title">
+            Menu
+        </div>
+        <div class="sidebar-toggle d-none d-md-block" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
+            <i class="fas fa-bars" aria-label="Toggle sidebar"></i>
+        </div>
+    </div>
+
+    <div class="nano">
+        <div class="nano-content">
+            <nav id="menu" class="nav-main" role="navigation">
+
+                <ul class="nav nav-main">
+
+                    <li>
+                        <a class="nav-link" asp-controller="Home" asp-action="Index">
+                            <i class="fas fa-home" aria-hidden="true"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-parent">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-cogs"></i>
+                            <span>Main Data</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            @if (Gender != null)
+                            {
+                                <li>
+                                    <a class="nav-link" asp-controller="Gender" asp-action="Index">
+                                        <i class="fas fa-cog"></i>
+                                        Gender
+                                    </a>
+                                </li>
+                            }
+
+                            @if (City != null)
+                            {
+                                <li>
+                                    <a class="nav-link" asp-controller="City" asp-action="Index">
+                                        <i class="fas fa-cog"></i>
+                                        City
+                                    </a>
+                                </li>
+                            }
+
+                            @if (BloodType != null)
+                            {
+                                <li>
+                                    <a class="nav-link" asp-controller="BloodType" asp-action="Index">
+                                        <i class="fas fa-cog"></i>
+                                        Blood Type
+                                    </a>
+                                </li>
+                            }
+                            @if (CoronaStatus != null)
+                            {
+                                <li>
+                                    <a class="nav-link" asp-controller="CoronaStatus" asp-action="Index">
+                                        <i class="fas fa-cog"></i>
+                                        Corona Status
+                                    </a>
+                                </li>
+                            }
+                            @if (DonateType != null)
+                            {
+                                <li>
+                                    <a class="nav-link" asp-controller="DonateType" asp-action="Index">
+                                        <i class="fas fa-cog"></i>
+                                        Donate Type
+                                    </a>
+                                </li>
+                            }
+                            @if (Specialization != null)
+                            {
+                                <li>
+                                    <a class="nav-link" asp-controller="Specialization" asp-action="Index">
+                                        <i class="fas fa-cog"></i>
+                                        Specialization
+                                    </a>
+                                </li>
+                            }
+
+                        </ul>
+                    </li>
+
+                    <li class="nav-parent">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-user"></i>
+                            <span>Patient</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            @if (Patient != null)
+                            {
+                                <li>
+                                    <a class="nav-link" asp-controller="Patient" asp-action="Index">
+                                        <i class="fas fa-users"></i>
+                                        All Patients
+                                    </a>
+                                </li>
+                            }
+                            @if (Donation != null)
+                            {
+                                <li>
+                                    <a class="nav-link" asp-controller="Donation" asp-action="Index">
+                                        <i class="fas fa-cog"></i>
+                                        Donations
+                                    </a>
+                                </li>
+                            }
+                            @if (OfflineCoronaTest != null)
+                            {
+                                <li>
+                                    <a class="nav-link" asp-controller="OfflineCoronaTest" asp-action="Index">
+                                        <i class="fas fa-cog"></i>
+                                        Offline Corona Test
+                                    </a>
+                                </li>
+
+                            }
+                            @if (OnlineCoronaTest != null)
+                            {
+                                <li>
+                                    <a class="nav-link" asp-controller="OnlineCoronaTest" asp-action="Index">
+                                        <i class="fas fa-cog"></i>
+                                        Online Corona Test
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+
+                    <li class="nav-parent">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-user-md"></i>
+                            <span>Doctor</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            @if (Doctor != null)
+                            {
+                                <li>
+                                    <a class="nav-link" asp-controller="Doctor" asp-action="Index">
+                                        <i class="fas fa-users"></i>
+                                        All Doctors
+                                    </a>
+                                </li>
+                            }
+                            @if (Agenda != null)
+                            {
+                                <li>
+                                    <a class="nav-link" asp-controller="Agenda" asp-action="Index">
+                                        <i class="fas fa-calendar"></i>
+                                        Doctor Agenda
+                                    </a>
+                                </li>
+                            }
+
+                        </ul>
+                    </li>
+
+                    <li class="nav-parent">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-comment"></i>
+                            <span>Chat</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            @if (Chat != null)
+                            {
+
+                                <li>
+                                    <a class="nav-link" asp-controller="Chat" asp-action="Index">
+                                        <i class="fas fa-comments"></i>
+                                        All Chat
+                                    </a>
+                                </li>
+                            } @if (Message != null)
+                            {
+
+                                <li>
+                                    <a class="nav-link" asp-controller="Message" asp-action="Index">
+                                        <i class="fas fa-comments"></i>
+                                        Messages
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+
+                    @if (Hospital != null)
+                    {
+
+                        <li>
+                            <a class="nav-link" asp-controller="Hospital" asp-action="Index">
+                                <i class="fas fa-hospital"></i>
+                                <span>Hospital</span>
+                            </a>
+                        </li>
+
+                    }
+
+                    @if (Pharmacy != null)
+                    {
+
+                        <li>
+                            <a class="nav-link" asp-controller="Pharmacy" asp-action="Index">
+                                <i class="fas fa-medkit"></i>
+                                <span>Pharmacy</span>
+                            </a>
+                        </li>
+                    }
+
+                    @if (SystemView != null || SystemUser != null)
+                    {
+                        <li class="nav-parent">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-users-cog"></i>
+                                <span>System Admin</span>
+                            </a>
+                            <ul class="nav nav-children">
+                                @if (SystemUser != null)
+                                {
+                                    <li>
+                                        <a class="nav-link" asp-controller="SystemUser" asp-action="Index">
+                                            <i class="fas fa-users-cog"></i>
+                                            System Users
+                                        </a>
+                                    </li>
+                                }
+                                @if (SystemView != null)
+                                {
+                                    <li>
+                                        <a class="nav-link" asp-controller="SystemView" asp-action="Index">
+                                            <i class="fas fa-window-restore"></i>
+                                            System Views
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+                    }
+
+                </ul>
+            </nav>
+        </div>
+
+        <script>
+            // Maintain Scroll Position
+            if (typeof localStorage !== 'undefined') {
+                if (localStorage.getItem('sidebar-left-position') !== null) {
+                    var initialPosition = localStorage.getItem('sidebar-left-position'),
+                        sidebarLeft = document.querySelector('#sidebar-left .nano-content');
+
+                    sidebarLeft.scrollTop = initialPosition;
+                }
+            }
+        </script>
+
+
+    </div>
+
+</aside>
+<!-- end: sidebar -->
